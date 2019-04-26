@@ -1,0 +1,34 @@
+<h2>My Prenotations</h2>
+<ul class="prenos">
+  <li *ngFor="let preno of prenos"
+    [class.selected]="preno === selectedPreno"
+    (click)="onSelect(preno)">
+    <span class="badge">{{preno.Nome}}</span> <span class="ins">{{preno.Cognome}}: {{preno.Indirizzo}}: {{preno.Telefono}}: {{preno.Email}}: {{preno.DataPrenotazione}}: {{preno.OraPrenotazione}}:</span>
+  </li>
+</ul>
+
+<div *ngIf="selectedPreno">
+
+  <h2>{{selectedPreno.Nome | uppercase}} Details</h2>
+  <div><span>Nome: </span>{{selectedPreno.Nome}}</div>
+  <div>
+    <label>Nome:
+      <input [(ngModel)]="selectedPreno.Nome" placeholder="Nome">
+    </label>
+  </div>
+
+</div>
+<hr>
+<app-preno-view *ngIf="selectedPreno" [ciao]="selectedPreno"></app-preno-view>
+
+
+<form>
+    Nome:<input #Nome>
+    Cognome:<input #Cognome>
+    Indirizzo:<input #Indirizzo>
+    Telefono:<input #Telefono>
+    Email:<input #Email>
+    DataPrenotazione:<input #DataPrenotazione>
+    OraPrenotazione:<input #OraPrenotazione>
+    <button (click)="onAddPreno(Nome, Cognome, Indirizzo, Telefono, Email, DataPrenotazione, OraPrenotazione)">pigiami</button>
+</form>
